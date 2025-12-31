@@ -1,0 +1,16 @@
+use std::io; // importing io module (input/output) from std (standrd library)
+
+fn main() { // entry point of program
+    println!("Guess the number!"); // printing string
+
+    println!("Please input your guess."); // printing string
+
+    let mut guess = String::new(); // creating mutable (modifiable) variable "guess" and letting user to input string value
+
+    // recieving user input
+    io::stdin() // calling stdin function from io module
+        .read_line(&mut guess)
+        .expect("Failed to read line"); // handling potential failure (if missing program will show warning)
+
+    println!("You guessed: {guess}"); // pasting value with println! placeholder
+}
