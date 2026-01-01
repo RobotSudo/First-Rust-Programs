@@ -1,7 +1,12 @@
 use std::io; // importing io module (input/output) from std (standrd library)
+use rand::Rng; // importing Rng module (range) from rand (random)
 
 fn main() { // entry point of program
     println!("Guess the number!"); // printing string
+
+    // NEW: creating the secret_number variable
+    let secret_number = rand::thread_rng().gen_range(1..=100);
+    println!("The secret number is: {secret_number}");
 
     println!("Please input your guess."); // printing string
 
