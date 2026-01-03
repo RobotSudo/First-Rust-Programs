@@ -1,4 +1,6 @@
+use std::cmp::Ordering; // importing cmp module (compare) from std (standrd library) / Ordering is is another enum and has the variants Less, Greater, and Equal
 use std::io; // importing io module (input/output) from std (standrd library)
+
 use rand::Rng; // importing Rng module (range) from rand (random)
 
 fn main() { // entry point of program
@@ -7,15 +9,28 @@ fn main() { // entry point of program
     // NEW: creating the secret_number variable
     let secret_number = rand::thread_rng().gen_range(1..=100);
     println!("The secret number is: {secret_number}");
+    loop {
+        println!("Please input your guess."); // printing string
 
-    println!("Please input your guess."); // printing string
+        let mut guess = String::new(); // creating mutable (modifiable) variable "guess" and letting user to input string value
 
-    let mut guess = String::new(); // creating mutable (modifiable) variable "guess" and letting user to input string value
+        // recieving user input
+        io::stdin() // calling stdin function from io module
+            .read_line(&mut guess)
+            .expect("Failed to read line"); // handling potential failure (if missing program will show warning)
 
-    // recieving user input
-    io::stdin() // calling stdin function from io module
-        .read_line(&mut guess)
-        .expect("Failed to read line"); // handling potential failure (if missing program will show warning)
+        let guess: u32 = guess.trim().parse().expect("Please type a number!");
 
-    println!("You guessed: {guess}"); // pasting value with println! placeholder
+        println!("You guessed: {guess}"); // pasting value with println! placeholder
+
+        match guess.cmp(&secret_number) {
+            Ordering::Less => println!("Too small!"),
+            Ordering::Greater => println!("Too big!"),
+            Ordering::Equal => {
+                println!("You win!");
+                break;
+            }
+        }
+    
+    }
 }
