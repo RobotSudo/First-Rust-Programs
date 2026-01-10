@@ -17,5 +17,33 @@ fn main() {
     // constants are always immutable and type of value must be annotated
     const THREE_HOURS_IN_SECONDS: u32 = 60 * 60 * 3;
     println!("There is {THREE_HOURS_IN_SECONDS} seconds in 3 hours");
+
+    // SHADOWING
+    let z = 5;
+    let z = z + 1;
+
+    {
+        let z = z * 2;
+        println!("The value of z in inner scope is: {z}");
+    }
+
+    println!("The value of z is {z}");
+
+    let spaces = "    ";
+    let spaces = spaces.len();
+
+    println!("What is this? {spaces}");
+
+    // DATA TYPES
+    // two data type subsets => scalar and compound
+    let guess: u32 = "42".parse().expect("This is not a number!");
+    println!("The value of varibale guess is {guess}");
+
+    // SCHALAR TYPES
+    // integers, floating-point numbers, booleans, characters
+
+    // INTGER - numbers without fractional component
+    
 }
+
 
